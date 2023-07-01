@@ -8,6 +8,7 @@
 - Material UI
 - Redux Toolkit
 - JSON Web Token
+- Chat Engine io
 
 ## Description
 
@@ -26,6 +27,12 @@ LoginPage
 
 Redux
 ![redux](https://github.com/ayushanandmishra/Social-Meida-App/assets/107947490/a3d18331-dd9e-4f56-b1bd-668f69ac064b)
+
+## Chat Feature
+You can chat whoever you want on the app in real time. Your messages will be saved and can be retrived later
+
+Chat Window
+![Screenshot (259)](https://github.com/ayushanandmishra/Social-Meida-App/assets/107947490/3b54309f-c0b0-4413-85e8-87426f718183)
 
 
 ## Run Locally
