@@ -81,9 +81,6 @@ export default function SignUp() {
 
     console.log(formValues);
 
-
-
-
     const savedUserResponse = await fetch(
       "http://localhost:3001/auth/register",
       {
