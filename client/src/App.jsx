@@ -24,7 +24,7 @@ function App() {
           <Route path='/'  element={isAuth? <HomePage/>:<LoginPage/>}/>
           <Route path='/signup'  element={isAuth?<HomePage/> :<SignUpPage />} />
           <Route path='/user/:userId' element={isAuth?<UserPage/>:<Navigate to="/"/>}/>
-          <Route path='/chat' element={<ChatPage/>}/>
+          <Route path='/chat' element={isAuth?<ChatPage/>:<Navigate to="/"/>}/>
 
 
         </Routes>
