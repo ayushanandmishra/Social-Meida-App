@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import axios from "axios"
 
 export const verifytoken=(req,res,next)=>{
 
@@ -28,7 +29,33 @@ export const verifytoken=(req,res,next)=>{
     {
         console.log({message:err.message});
     }
-   
 
+}
 
+export const createChatUser=async(req,res,next)=>{
+
+    try{
+
+        const {
+            firstName,
+            lastName,
+            email,
+            picturePath
+          } = req.body;
+
+          const image=`http://localhost:3001/assets/${picturePath}`
+          console.log(image);
+        const r=await axios.put("https://api.chatengine.io/users/",
+        {username:firstName,secret:firstName,first_name:firstName,email:email,last_name:lastName},
+        {headers:{"private-key":"58f00d7c-01a0-4703-95e2-af98ea86dfd2"}})
+
+         console.log(r.data);
+         
+      }
+      catch(err)
+      {
+            console.log(err.message);
+      }
+
+      next();
 }

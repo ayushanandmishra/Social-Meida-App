@@ -9,7 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { login, register } from "./impFunctions/Signup.js";
-import { verifytoken } from "./authorization/auth.js";
+import { verifytoken,createChatUser } from "./authorization/auth.js";
 import { createPost,getFeedPost,getUserPost,likePost } from "./impFunctions/Post.js";
 import { getUser,getUserFriend,addRemoveFriends} from "./impFunctions/User.js";
 import { addComment,getPostComment,deleteComment, getAllComments } from "./impFunctions/Comments.js";
@@ -41,8 +41,9 @@ const upload = multer({ storage });
 
 
 /*POST ROUTES*/
-app.post("/auth/register",upload.single('picture'),register);
+app.post("/auth/register",upload.single('picture'),createChatUser,register);
 app.post("/posts",upload.single('picture'),verifytoken,createPost);
+
 
 app.post("/auth/login",login);
 
