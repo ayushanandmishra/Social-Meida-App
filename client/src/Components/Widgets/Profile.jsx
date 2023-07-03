@@ -3,9 +3,9 @@ import {
     EditOutlined,
     LocationOnOutlined,
     WorkOutlineOutlined,
-} from "@mui/icons-material"; 
+} from "@mui/icons-material";
 import { Box, Typography, Divider } from "@mui/material";
-import Photo from "./Photo"; 
+import Photo from "./Photo";
 import FlexBetween from "./FlexBetweeen";
 import Wrapper from "./Wrapper";
 import { useSelector } from "react-redux";
@@ -25,9 +25,9 @@ const UserProfile = ({ userId, picturePath }) => {
     const dark = '#060614';
     const medium = '#b8b8d4';
     const main = '#381347';
- 
+
     const getUser = async () => {
-       
+
         const response = await fetch(`http://localhost:3001/users/${userId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
@@ -39,7 +39,7 @@ const UserProfile = ({ userId, picturePath }) => {
 
     useEffect(() => {
         getUser();
-    }, []); 
+    }, []);
 
     if (!user) {
         return null;
@@ -83,7 +83,7 @@ const UserProfile = ({ userId, picturePath }) => {
                                 },
                             }}
                         >
-                             {firstName} {lastName}
+                            {firstName} {lastName}
                         </Typography>
                         <Typography color={medium}>{occupation}</Typography>
                     </Box>
@@ -126,7 +126,7 @@ const UserProfile = ({ userId, picturePath }) => {
             <Divider />
 
             {/* FOURTH ROW */}
-            <Box p="1rem 0" style={{ textAlign: 'center' }}>
+            {/* <Box p="1rem 0" style={{ textAlign: 'center' }}>
                 <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
                     Social Profiles
                 </Typography>
@@ -161,7 +161,7 @@ const UserProfile = ({ userId, picturePath }) => {
                 </Box>
                 <Box style={{ display: 'flex', justifyContent: 'space-evenly' }}>
 
-                <FlexBetween gap="1rem">
+                    <FlexBetween gap="1rem">
                         <FlexBetween gap="1rem">
                             <a href="" ><img src={github} alt="linkedin" /></a>
                             <Box>
@@ -187,9 +187,9 @@ const UserProfile = ({ userId, picturePath }) => {
 
                     </FlexBetween>
 
-                            </Box>
+                </Box>
 
-            </Box>
+            </Box> */}
         </Wrapper>
     );
 };

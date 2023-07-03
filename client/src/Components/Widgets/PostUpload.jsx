@@ -1,18 +1,15 @@
 import {
     EditOutlined,
     DeleteOutlined,
-    AttachFileOutlined,
-    GifBoxOutlined,
+
     ImageOutlined,
-    MicOutlined,
-    MoreHorizOutlined,
+   
   } from "@mui/icons-material";
   import {
     Box,
     Divider,
     Typography,
     InputBase,
-    useTheme,
     Button,
     IconButton,
     useMediaQuery,
@@ -34,13 +31,13 @@ import {
     const user = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
    
-    const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+    const media = useMediaQuery("(min-width: 1000px)");
     
   
     const handlePost = async () => {
       const formData = new FormData();
       const currentDate= new Date().toLocaleDateString();
-      console.log(currentDate);
+    
 
       formData.append("userId", user._id);
       formData.append("date",currentDate);
@@ -58,8 +55,7 @@ import {
         body: formData,
       });
       const posts = await response.json();
-      console.log("ayush");
-      console.log(posts);
+     
       dispatch( setPosts( {posts} ));
       setImage(null);
       setPost("");
@@ -70,19 +66,19 @@ import {
         <Box
         width="100%"
         padding="0rem 0rem 2rem 0rem"
-        display={isNonMobileScreens ? "flex" : "block"}
+        display={media ? "flex" : "block"}
         gap="0.5rem"
         justifyContent="space-between"
       >
         <Box
-        flexBasis={isNonMobileScreens ? "100%" : undefined}
-        mt={isNonMobileScreens ? undefined : "2rem"}
+        flexBasis={media ? "100%" : undefined}
+        mt={media ? undefined : "2rem"}
       >
         <Wrapper>
         <FlexBetween gap="1.5rem">
           <Photo image={picturePath} />
           <InputBase
-            placeholder="What's on your mind..."
+            placeholder="Write Something.."
             onChange={(e) => setPost(e.target.value)}
             value={post}
             sx={{
@@ -92,7 +88,18 @@ import {
               padding: "1rem 2rem",
             }}
           />
+           <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+            <ImageOutlined sx={{ color: 'gray' }} />
+            <Typography
+              color={'gray'}
+              sx={{ "&:hover": { cursor: "pointer", color: 'white' } }}
+            >
+              Image
+            </Typography>
+          </FlexBetween>
         </FlexBetween>
+
+        
         {isImage && (
           <Box
             border={`1px solid ${'white'}`}
@@ -118,7 +125,7 @@ import {
                   >
                     <input {...getInputProps()} />
                     {!image ? (
-                      <p>Add Image Here</p>
+                      <p>Drag or drop your image here </p>
                     ) : (
                       <FlexBetween>
                         <Typography>{image.name}</Typography>
@@ -142,42 +149,11 @@ import {
   
         <Divider sx={{ margin: "1.25rem 0" }} />
   
-        <FlexBetween>
-          <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
-            <ImageOutlined sx={{ color: 'gray' }} />
-            <Typography
-              color={'gray'}
-              sx={{ "&:hover": { cursor: "pointer", color: 'white' } }}
-            >
-              Image
-            </Typography>
-          </FlexBetween>
-  
-          {isNonMobileScreens ? (
-            <>
-              <FlexBetween gap="0.25rem">
-                <GifBoxOutlined sx={{ color: 'gray' }} />
-                <Typography color={'gray'}>Clip</Typography>
-              </FlexBetween>
-  
-              <FlexBetween gap="0.25rem">
-                <AttachFileOutlined sx={{ color: 'gray' }} />
-                <Typography color={'gray'}>Attachment</Typography>
-              </FlexBetween>
-  
-              <FlexBetween gap="0.25rem">
-                <MicOutlined sx={{ color: 'gray' }} />
-                <Typography color={'gray'}>Audio</Typography>
-              </FlexBetween>
-            </>
-          ) : (
-            <FlexBetween gap="0.25rem">
-              <MoreHorizOutlined sx={{ color: 'gray' }} />
-            </FlexBetween>
-          )}
+        <FlexBetween style={{justifyContent:'center'}}>
+       
   
           <Button
-            disabled={!post}
+            disabled={!post && !image}
             onClick={handlePost}
             sx={{
               color: "#97d1c6",
