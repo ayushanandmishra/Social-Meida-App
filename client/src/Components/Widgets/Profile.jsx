@@ -1,6 +1,5 @@
 import {
-    ManageAccountsOutlined,
-    EditOutlined,
+  
     LocationOnOutlined,
     WorkOutlineOutlined,
 } from "@mui/icons-material";
@@ -12,10 +11,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import twitter from '../../assets/twitter.png'
-import linkedin from '../../assets/linkedin.png'
-import github from '../../assets/github.png'
-import slack from '../../assets/slack.png'
 
 
 const UserProfile = ({ userId, picturePath }) => {

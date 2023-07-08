@@ -1,0 +1,31 @@
+version: '2.19.1'
+
+services:
+  api:
+    container_name: socialserver
+    restart: unless-stopped
+    image: socialserverimage
+    build: 
+      context: server
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    networks:
+      - shared-network
+    
+  client:
+    container_name: socialclient
+    restart: unless-stopped
+    image: socialclientimage
+    build: 
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+    networks:
+      - shared-network
+    depends_on:
+      - api  
+
+networks:
+  shared-network: 

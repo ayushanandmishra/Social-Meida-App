@@ -2,7 +2,7 @@ import { Box, Typography, Divider,Button } from "@mui/material";
 import Photo from "./Photo";
 import FlexBetween from "./FlexBetweeen";
 import Wrapper from "./Wrapper";
-import User from "../../../../server/models/User";
+
 import { useSelector,useDispatch } from "react-redux";
 import { setFriends } from "../../reduxStore/state";
 import { useState } from "react";

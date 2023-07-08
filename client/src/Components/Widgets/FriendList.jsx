@@ -1,7 +1,7 @@
 import { Box, Typography, } from "@mui/material";
-import FlexBetween from "./FlexBetweeen";
+
 import Wrapper from "./Wrapper";
-import User from "../../../../server/models/User";
+
 import { useSelector,useDispatch } from "react-redux";
 import { setFriends } from "../../reduxStore/state";
 import { useEffect, useState } from "react";
