@@ -6,6 +6,7 @@ import Wrapper from "./Wrapper";
 import { useSelector,useDispatch } from "react-redux";
 import { setFriends } from "../../reduxStore/state";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const Friend=({fid,picturePath,firstName,lastName})=>{
@@ -13,7 +14,7 @@ export const Friend=({fid,picturePath,firstName,lastName})=>{
     const [toggle,setToggle]=useState(true);
     const user=useSelector((state)=>state.user);
     const token=useSelector((state)=>state.token);
-    
+    const navigate=useNavigate();
     const dispatch=useDispatch();
     const userId=user._id;
     const friends=user.friends;
@@ -31,6 +32,10 @@ export const Friend=({fid,picturePath,firstName,lastName})=>{
     // }
     
     
+    const handleNavigate=()=>{
+
+        navigate(`/user/${fid}`);
+    }
 
     const handleFriends=async()=>
     {
@@ -45,6 +50,8 @@ export const Friend=({fid,picturePath,firstName,lastName})=>{
         }
     })
 
+    
+
     const response=await request.json();
     console.log(response);
     dispatch(setFriends({friends:response})); 
@@ -58,7 +65,8 @@ export const Friend=({fid,picturePath,firstName,lastName})=>{
                     <Box style={{display:'flex', alignItems:'center'}}>
                     <Photo image={picturePath}/>
                     <Box>
-                    <Typography marginLeft={1} variant="h6"
+                    <Typography onClick={handleNavigate} marginLeft={1} variant="h6"
+                            
                             color={'#060614'}
                             fontWeight="500"
                             sx={{
